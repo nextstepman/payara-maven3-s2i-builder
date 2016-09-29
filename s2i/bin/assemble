@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+echo "---> Restore build artifacts"
+if [ "$(ls /tmp/artifacts/.m2 2>/dev/null)" ]; then
+    mv /tmp/artifacts/.m2 $HOME
+fi
+
+echo "---> Installing application source"
+cp -Rf /tmp/src/. ./
+
+echo "---> Building application from source"
+if [ -f "mvnw" ]; then
+  ./mvnw clean install
+else
+  mvn clean install
+fi
+
+# Fix source directory permissions
+fix-permissions ./

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pushd ${HOME} > /dev/null
+tar cf - .m2/repository
+popd > /dev/null
+

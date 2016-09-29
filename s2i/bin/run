@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+echo "---> Starting Payara application"
+java -jar payara-micro-4.1.1.163.jar --deploy `find . -name *.war`
